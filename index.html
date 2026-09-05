@@ -29,7 +29,7 @@
             width: 100%;
             max-width: 800px;
             background: var(--card-bg);
-            padding: 30px;
+            padding: 10px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
@@ -141,7 +141,7 @@
         }
 
         /* 針對小螢幕與手機版的最佳化排版 */
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .form-group {
                 display: flex;
                 flex-direction: row;
@@ -718,6 +718,29 @@ function resetForm() {
     
     document.getElementById('headCircum').required = true;
     document.getElementById('headCircumLabel').classList.add('required');
+    // 1. 將 Radio 按鈕自動勾回「西元」
+const defaultRadio = document.querySelector('input[name="yearType"][value="ad"]');
+if (defaultRadio) defaultRadio.checked = true;
+
+// 2. 清空西元輸入框的值，並讓它顯示出來
+const adDateInput = document.getElementById('adDate');
+if (adDateInput) {
+    adDateInput.value = '';
+    adDateInput.style.display = 'inline-block';
+}
+
+// 3. 清空民國年、月、日三個格子的值，並把整個民國區塊隱藏
+const rocContainer = document.getElementById('rocContainer');
+if (rocContainer) rocContainer.style.display = 'none';
+
+const twYear = document.getElementById('twYear');   if (twYear) twYear.value = '';
+const twMonth = document.getElementById('twMonth'); if (twMonth) twMonth.value = '';
+const twDay = document.getElementById('twDay');     if (twDay) twDay.value = '';
+
+// 4. 清空原本用來算年齡的隱藏生日欄位（這點很重要）
+const birthdayInput = document.getElementById('birthday');
+if (birthdayInput) birthdayInput.value = '';
+
 }
 
 // 網頁剛載入時，預設頭圍為必填
