@@ -228,12 +228,38 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-                <div class="input-wrapper">
-                    <input type="number" id="twYear" style="width: 60px;"> 年 
-                    <input type="number" id="twMonth" style="width: 37px;" min="1" max="12"> 月 
-                    <input type="number" id="twDay" style="width: 37px;" min="1" max="31"> 日
-                    <input type="hidden" id="birthday" required onchange="checkAge()">
-                </div>
+<!-- 1. 讓使用者選擇語系的 Radio 按鈕 -->
+<div style="margin-bottom: 8px; font-size: 14px;">
+    <label><input type="radio" name="yearType" value="ad" checked> 西元年</label>
+    <label style="margin-left: 10px;"><input type="radio" name="yearType" value="roc"> 民國年</label>
+</div>
+
+<!-- 2. 西元輸入框（預設顯示，寬度 150px） -->
+<input type="date" id="adDate" style="width: 150px; box-sizing: border-box;">
+
+<!-- 3. 民國輸入框群組（預設隱藏，寬度 150px） -->
+<div id="rocContainer" style="
+    display: none; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 150px; 
+    box-sizing: border-box;
+    padding: 0 4px;
+    border: 1px solid #ccc; /* 幫民國格子加個外框，模擬標準輸入框 */
+    height: 30px;            /* 高度可依你其他欄位微調 */
+    border-radius: 4px;
+">
+    <input type="number" id="twYear" min="1" style="width: 32%; text-align: center; border: none; background: transparent; padding: 0;">
+    <span style="font-size: 12px; color: #666; user-select: none;">年</span>
+    <input type="number" id="twMonth" min="1" max="12" style="width: 22%; text-align: center; border: none; background: transparent; padding: 0;">
+    <span style="font-size: 12px; color: #666; user-select: none;">月</span>
+    <input type="number" id="twDay" min="1" max="31" style="width: 22%; text-align: center; border: none; background: transparent; padding: 0;">
+    <span style="font-size: 12px; color: #666; user-select: none;">日</span>
+</div>
+
+<!-- 4. 你原本的隱藏欄位，用來對接後續的 age 計算 -->
+<input type="hidden" id="birthday" name="birthday">
+                
                 <div class="result-addon" id="ageResult"></div>
             </div>
 
@@ -241,7 +267,7 @@
             <div class="form-group">
                 <label class="required">身高 (cm)</label>
                 <div class="input-wrapper">
-                    <input type="number" id="height" step="0.1" min="30" max="150" required>
+                    <input type="number" id="height" min="30" max="150" required>
                 </div>
                 <div class="result-addon" id="heightResult"></div>
             </div>
@@ -250,7 +276,7 @@
             <div class="form-group">
                 <label class="required">體重 (kg)</label>
                 <div class="input-wrapper">
-                    <input type="number" id="weight" step="0.1" min="1" max="100" required>
+                    <input type="number" id="weight" min="1" max="100" required>
                 </div>
                 <div class="result-addon" id="weightResult"></div>
             </div>
@@ -259,7 +285,7 @@
             <div class="form-group" id="headCircumGroup">
                 <label id="headCircumLabel" class="required">頭圍 (cm)</label>
                 <div class="input-wrapper">
-                    <input type="number" id="headCircum" step="0.1" min="30" max="60">
+                    <input type="number" id="headCircum" min="30" max="60">
                 </div>
                 <div class="result-addon" id="headCircumResult"></div>
             </div>
@@ -674,7 +700,59 @@ function resetForm() {
 
 // 網頁剛載入時，預設頭圍為必填
 document.getElementById('headCircum').required = true;
-    </script>
+
+//  以下新增
+<!-- 5. 控制顯示與自動換算的 JavaScript -->
+// ─── 區塊 A：控制「西元/民國」欄位的顯示與隱藏 ───
+document.querySelectorAll('input[name="yearType"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const adDateInput = document.getElementById('adDate');
+        const rocContainer = document.getElementById('rocContainer');
+        
+        if (this.value === 'ad') {
+            adDateInput.style.display = 'inline-block'; // 顯示西元
+            rocContainer.style.display = 'none';         // 隱藏民國
+            // 切換時清空數據，避免干擾
+            document.getElementById('birthday').value = adDateInput.value; 
+        } else {
+            adDateInput.style.display = 'none';          // 隱藏西元
+            rocContainer.style.display = 'inline-flex';  // 顯示民國
+            updateRocToAd(); // 觸發一次民國年換算
+        }
+        checkAge(); // 切換時自動重算年齡
+    });
+});
+
+// ─── 區塊 B：監聽「西元」輸入框 ───
+document.getElementById('adDate').addEventListener('input', function() {
+    document.getElementById('birthday').value = this.value; // 直接複製西元日期
+    checkAge(); // 啟動你的年齡計算
+});
+
+// ─── 區塊 C：監聽「民國」三個格子（全域監聽） ───
+document.querySelectorAll('#twYear, #twMonth, #twDay').forEach(input => {
+    input.addEventListener('input', updateRocToAd);
+});
+
+// ─── 區塊 D：民國轉西元的專用 Function ───
+function updateRocToAd() {
+    // 只有在目前勾選「民國」時才進行換算
+    if (document.querySelector('input[name="yearType"]:checked').value !== 'roc') return;
+
+    const twYear = parseInt(document.getElementById('twYear').value) || 0;
+    const month = document.getElementById('twMonth').value.padStart(2, '0');
+    const day = document.getElementById('twDay').value.padStart(2, '0');
+
+    if (twYear > 0 && month !== '00' && day !== '00') {
+        const westernYear = twYear + 1911;
+        const finalDate = `${westernYear}-${month}-${day}`;
+        
+        document.getElementById('birthday').value = finalDate; // 塞入隱藏欄位
+        checkAge(); // 啟動你的年齡計算
+    }
+}
+       
+</script>
 
 </body>
 
