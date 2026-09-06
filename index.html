@@ -228,40 +228,43 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-<!-- 最外層容器：利用 relative 建立一個獨立的座標系統，寬度維持標準 150px -->
-<div style="position: relative; display: inline-block; width: 150px; vertical-align: middle;">
+<!-- 📌 這是你原本的 100px 標籤，請維持它原本的寫法。
+     後面緊接著貼上我們下面這段特製的輸入框組合： -->
+
+<div style="
+    display: inline-flex; 
+    align-items: center; 
+    white-space: nowrap; 
+    vertical-align: middle;
+    height: 32px;             /* 📌 確保高度與其他輸入框完美平齊 */
+    margin-left: 4px;         /* 與前方 100px 標籤的精緻間距，可自行微調 */
+">
     
-    <!-- 左側 Radio 區：📌 改用 position: absolute 變成浮空飄浮狀態！
-         它會默默貼在輸入框的「左外側」，完全不擠壓、不干擾原本的網頁排版，因此絕對不會斷行！ -->
+    <!-- 左側 Radio 區：改成橫排，緊貼在輸入框左邊 -->
     <div style="
-        position: absolute;
-        right: 104%;           /* 精準飄浮在輸入框左邊 4% 的位置 */
-        top: 50%;
-        transform: translateY(-50%); /* 確保上下百分之百完美置中 */
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
+        display: inline-flex; 
+        align-items: center;
         font-size: 13px;       
-        line-height: 1.2; 
+        margin-right: 6px;     /* 📌 鎖定與右側輸入框只有 6px 間距，消滅大空隙 */
         flex-shrink: 0;
     ">
         <!-- 西元 -->
-        <label style="display: flex; align-items: center; margin-bottom: 2px; cursor: pointer; white-space: nowrap;">
-            <input type="radio" name="yearType" value="ad" checked style="margin: 0 3px 0 0; transform: scale(0.9);">西元
+        <label style="display: flex; align-items: center; margin-right: 6px; cursor: pointer;">
+            <input type="radio" name="yearType" value="ad" checked style="margin: 0 2px 0 0; transform: scale(0.9);">西元
         </label>
         
         <!-- 民國 -->
-        <label style="display: flex; align-items: center; cursor: pointer; white-space: nowrap;">
-            <input type="radio" name="yearType" value="roc" style="margin: 0 3px 0 0; transform: scale(0.9);">民國
+        <label style="display: flex; align-items: center; cursor: pointer;">
+            <input type="radio" name="yearType" value="roc" style="margin: 0 2px 0 0; transform: scale(0.9);">民國
         </label>
     </div>
 
-    <!-- 右側輸入框本體：📌 這裡完全接管原本 150px 的完美格子位置，外殼完全看不出異狀 -->
-    <div style="width: 150px; height: 32px;">
-        <!-- 西元輸入框：150px，滿血 32px 高度 -->
+    <!-- 右側輸入框主體：標準 150px 寬度，高 32px，滿血大字體 -->
+    <div style="display: block; width: 150px; height: 32px; flex-shrink: 0;">
+        <!-- 西元輸入框 -->
         <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 14px; padding: 0 4px;">
 
-        <!-- 民國輸入框群組：150px，滿血 32px 高度 -->
+        <!-- 民國輸入框群組：外層隱形 -->
         <div id="rocContainer" style="
             display: none; 
             align-items: center; 
