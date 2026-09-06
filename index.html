@@ -228,6 +228,7 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
+                <div class="input-wrapper">
 <!-- 📌 請接在你原本 100px 的「出生日期」標籤後面 -->
 
 <div style="
@@ -244,7 +245,7 @@
         display: inline-flex; 
         flex-direction: column; 
         justify-content: center; 
-        font-size: 12px;       
+        font-size: 15px;       
         line-height: 1.2; 
         margin-right: 6px;     /* 📌 限制與右側格子只有 6px 間距 */
         flex-shrink: 0;
@@ -280,26 +281,27 @@
                 width: 31%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 11px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">年</span>
+            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">年</span>
             
             <!-- 「月」輸入框：獨立灰色細框 -->
             <input type="number" id="twMonth" min="1" max="12" placeholder="月" style="
                 width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 11px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">月</span>
+            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">月</span>
             
             <!-- 「日」輸入框：獨立灰色細框 -->
             <input type="number" id="twDay" min="1" max="31" placeholder="日" style="
                 width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 11px; color: #666; user-select: none; margin: 0 0 0 1px; width: auto !important;">日</span>
+            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 0 0 1px; width: auto !important;">日</span>
         </div>
     </div>
-
 </div>
-
+                    
+</div>
+<!-- 上面對應 input wrapper-->
 <!-- 隱藏欄位 -->
 <input type="hidden" id="birthday" name="birthday">
                 
