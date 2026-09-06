@@ -228,33 +228,34 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-<!-- 最外層容器 -->
+<!-- 最外層容器：白話意思是「所有人給我緊緊貼在一起，不準換行」 -->
 <div style="display: inline-flex; align-items: center; white-space: nowrap;">
     
-    <!-- 左側：字體真正直排的 Radio 區 -->
+    <!-- 左側 Radio 區：強制限制總寬度為 24px，絕不讓它往右撐開 -->
     <div style="
         display: inline-flex; 
         flex-direction: column; 
         justify-content: center; 
-        font-size: 10px;       /* 稍微放大到 10px 讓直排更好閱讀 */
-        line-height: 1.1; 
-        margin-right: 4px;     
-        text-align: center;    /* 改為置中對齊 */
+        width: 24px;           /* 📌 最核心修改：鎖死寬度，一像素都不準多 */
+        font-size: 10px; 
+        line-height: 1; 
+        margin-right: 4px;     /* 與右側輸入框只保留 4px 的精緻微小間距 */
     ">
-        <!-- 西元（字體直排） -->
-        <label style="display: flex; align-items: center; margin-bottom: 3px; cursor: pointer;">
-            <input type="radio" name="yearType" value="ad" checked style="margin: 0 2px 0 0; transform: scale(0.75);">
-            <span style="display: inline-block; text-align: center; width: 12px;">西<br>元</span>
+        <!-- 西元 -->
+        <label style="display: inline-flex; align-items: center; justify-content: flex-end; margin-bottom: 2px; cursor: pointer; width: 100%;">
+            <input type="radio" name="yearType" value="ad" checked style="margin: 0; transform: scale(0.75);">
+            <!-- 使用 CSS 標準直排，不留任何多餘空隙 -->
+            <span style="writing-mode: vertical-lr; letter-spacing: -1px; margin-left: 1px;">西元</span>
         </label>
         
-        <!-- 民國（字體直排） -->
-        <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="radio" name="yearType" value="roc" style="margin: 0 2px 0 0; transform: scale(0.75);">
-            <span style="display: inline-block; text-align: center; width: 12px;">民<br>國</span>
+        <!-- 民國 -->
+        <label style="display: inline-flex; align-items: center; justify-content: flex-end; cursor: pointer; width: 100%;">
+            <input type="radio" name="yearType" value="roc" style="margin: 0; transform: scale(0.75);">
+            <span style="writing-mode: vertical-lr; letter-spacing: -1px; margin-left: 1px;">民國</span>
         </label>
     </div>
 
-    <!-- 右側：縮小至 125px 的輸入框本體 -->
+    <!-- 右側輸入框本體：維持 125px -->
     <div style="display: inline-block; width: 125px;">
         <!-- 西元輸入框 -->
         <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 13px;">
@@ -285,7 +286,6 @@
 
 <!-- 隱藏欄位 -->
 <input type="hidden" id="birthday" name="birthday">
-
                 
                 <div class="result-addon" id="ageResult"></div>
             </div>
