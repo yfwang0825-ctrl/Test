@@ -228,42 +228,40 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-<!-- 最外層容器：改用純 flex 布局，白話意思是「我和前方的文字是一個整體，而且裡面的物件死都不准換行」 -->
-<div style="
-    display: flex; 
-    align-items: center; 
-    flex-wrap: nowrap;        /* 📌 絕對不准斷行 */
-    width: auto;              /* 寬度不寫死，由內容決定 */
-    height: 32px;             /* 📌 強制與你原本西元 input 一樣的 32px 高度 */
-">
+<!-- 最外層容器：利用 relative 建立一個獨立的座標系統，寬度維持標準 150px -->
+<div style="position: relative; display: inline-block; width: 150px; vertical-align: middle;">
     
-    <!-- 左側 Radio 區：橫排貼緊，絕不推開多餘空隙 -->
+    <!-- 左側 Radio 區：📌 改用 position: absolute 變成浮空飄浮狀態！
+         它會默默貼在輸入框的「左外側」，完全不擠壓、不干擾原本的網頁排版，因此絕對不會斷行！ -->
     <div style="
+        position: absolute;
+        right: 104%;           /* 精準飄浮在輸入框左邊 4% 的位置 */
+        top: 50%;
+        transform: translateY(-50%); /* 確保上下百分之百完美置中 */
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
         font-size: 13px;       
-        line-height: 1.3; 
-        margin-right: 6px;     /* 📌 鎖定與輸入框的間距只有 6px，絕不多留空隙 */
-        flex-shrink: 0;        /* 防止左邊被強行擠壓變形 */
+        line-height: 1.2; 
+        flex-shrink: 0;
     ">
         <!-- 西元 -->
         <label style="display: flex; align-items: center; margin-bottom: 2px; cursor: pointer; white-space: nowrap;">
-            <input type="radio" name="yearType" value="ad" checked style="margin: 0 4px 0 0; transform: scale(0.9); flex-shrink: 0;">西元
+            <input type="radio" name="yearType" value="ad" checked style="margin: 0 3px 0 0; transform: scale(0.9);">西元
         </label>
         
         <!-- 民國 -->
         <label style="display: flex; align-items: center; cursor: pointer; white-space: nowrap;">
-            <input type="radio" name="yearType" value="roc" style="margin: 0 4px 0 0; transform: scale(0.9); flex-shrink: 0;">民國
+            <input type="radio" name="yearType" value="roc" style="margin: 0 3px 0 0; transform: scale(0.9);">民國
         </label>
     </div>
 
-    <!-- 右側輸入框主體：📌 這裡的寬度設定是視覺關鍵！如果太寬會把右邊推爆，我們精準鎖定在 155px -->
-    <div style="display: block; width: 155px; height: 32px; flex-shrink: 0;">
-        <!-- 西元輸入框：寬度 100% 撐滿 155px，高度滿血 32px -->
+    <!-- 右側輸入框本體：📌 這裡完全接管原本 150px 的完美格子位置，外殼完全看不出異狀 -->
+    <div style="width: 150px; height: 32px;">
+        <!-- 西元輸入框：150px，滿血 32px 高度 -->
         <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 14px; padding: 0 4px;">
 
-        <!-- 民國輸入框群組：外層完全隱形，寬度 100% 撐滿 155px，高度滿血 32px -->
+        <!-- 民國輸入框群組：150px，滿血 32px 高度 -->
         <div id="rocContainer" style="
             display: none; 
             align-items: center; 
@@ -272,21 +270,21 @@
             box-sizing: border-box;
             height: 32px;            
         ">
-            <!-- 「年」輸入框：高度 32px 寫死，灰色細框 -->
+            <!-- 「年」輸入框：獨立灰色細框，高度 32px -->
             <input type="number" id="twYear" min="1" placeholder="年" style="
-                width: 31%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
+                width: 32%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
             <span style="font-size: 11px; color: #666; user-select: none; margin: 0 1px;">年</span>
             
-            <!-- 「月」輸入框：高度 32px 寫死，灰色細框 -->
+            <!-- 「月」輸入框：獨立灰色細框，高度 32px -->
             <input type="number" id="twMonth" min="1" max="12" placeholder="月" style="
                 width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
             <span style="font-size: 11px; color: #666; user-select: none; margin: 0 1px;">月</span>
             
-            <!-- 「日」輸入框：高度 32px 寫死，灰色細框 -->
+            <!-- 「日」輸入框：獨立灰色細框，高度 32px -->
             <input type="number" id="twDay" min="1" max="31" placeholder="日" style="
                 width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
