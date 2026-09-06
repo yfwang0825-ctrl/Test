@@ -229,23 +229,23 @@
             <div class="form-group">
                 <label class="required">出生日期</label>
                 <div class="input-wrapper">
-<!-- 📌 請接在你原本 100px 的「出生日期」標籤後面 -->
+<!-- 📌 修改成西元/民國 雙用  -->
 
 <div style="
     display: inline-flex; 
     align-items: center; 
     white-space: nowrap; 
     vertical-align: middle;
-    height: 34px;             /* 稍微放寬到 34px 讓垂直 Radio 更舒適 */
+  /*  height: 34px;              稍微放寬到 34px 讓垂直 Radio 更舒適 */
     margin-left: 4px;         
 ">
     
-    <!-- 左側 Radio 區：📌 徹底拆除 <label>，改用 <span> 堆疊，完全免疫全域 label 寬度干擾！ -->
+    <!-- 左側 Radio 區：📌 用 <span> 堆疊，完全免疫全域 label 寬度干擾！ -->
     <div style="
         display: inline-flex; 
         flex-direction: column; 
         justify-content: center; 
-        font-size: 15px;       
+      /*  font-size: 15px;      */ 
         line-height: 1.2; 
         margin-right: 6px;     /* 📌 限制與右側格子只有 6px 間距 */
         flex-shrink: 0;
@@ -262,10 +262,10 @@
         </span>
     </div>
 
-    <!-- 右側輸入框主體：標準 150px 寬度，高 32px -->
-    <div style="display: block; width: 150px; height: 32px; flex-shrink: 0;">
+    <!-- 右側輸入框主體：標準 150px 寬度，高 32px width: 150px; height: 32px;  font-size:14px  -->
+    <div style="display: block;  flex-shrink: 0;">
         <!-- 西元輸入框 -->
-        <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 14px; padding: 0 4px;">
+        <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 15px; padding: 0 4px;">
 
         <!-- 民國輸入框群組 -->
         <div id="rocContainer" style="
@@ -278,24 +278,24 @@
         ">
             <!-- 「年」輸入框：獨立灰色細框 -->
             <input type="number" id="twYear" min="1" placeholder="年" style="
-                width: 31%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
+                width: 31%; text-align: center; height: 32px; box-sizing: border-box; font-size: 15px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">年</span>
+            <span style="font-size: 16px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">年</span>
             
             <!-- 「月」輸入框：獨立灰色細框 -->
             <input type="number" id="twMonth" min="1" max="12" placeholder="月" style="
-                width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
+                width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 15px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">月</span>
+            <span style="font-size: 16px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">月</span>
             
             <!-- 「日」輸入框：獨立灰色細框 -->
             <input type="number" id="twDay" min="1" max="31" placeholder="日" style="
-                width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 14px;
+                width: 24%; text-align: center; height: 32px; box-sizing: border-box; font-size: 15px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
-            <span style="font-size: 15px; color: #666; user-select: none; margin: 0 0 0 1px; width: auto !important;">日</span>
+            <span style="font-size: 16px; color: #666; user-select: none; margin: 0 0 0 1px; width: auto !important;">日</span>
         </div>
     </div>
 </div>
