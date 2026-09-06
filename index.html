@@ -54,8 +54,7 @@
         }
 
         .input-wrapper {
-            width: 160px;
-            /* 您指定的短欄位設定 */
+            width: 230px;
             display: flex;
             align-items: center;
         }
@@ -150,6 +149,9 @@
                 margin-bottom: 15px;
             }
 
+            .input-wrapper {
+            width: 160px;
+            }
             /* 1. 強制性別這一列絕對不准換行 */
             .form-group:first-of-type {
                 flex-wrap: nowrap ;
@@ -228,7 +230,7 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-                <div class="input-wrapper">
+             /*   <div class="input-wrapper">  */
 <!-- 📌 修改成西元/民國 雙用  -->
 
 <div style="
@@ -300,7 +302,7 @@
     </div>
 </div>
                     
-</div>
+/*  </div>  */
 <!-- 上面對應 input wrapper-->
 <!-- 隱藏欄位 -->
 <input type="hidden" id="birthday" name="birthday">
