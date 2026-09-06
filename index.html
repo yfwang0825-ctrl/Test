@@ -228,23 +228,22 @@
             <!-- 生日 -->
             <div class="form-group">
                 <label class="required">出生日期</label>
-<!-- 最外層容器：白話意思是「所有人給我緊緊貼在一起，不準換行」 -->
+<!-- 最外層容器：白話意思是「保持 178px 總寬度，且死都不准換行」 -->
 <div style="display: inline-flex; align-items: center; white-space: nowrap;">
     
-    <!-- 左側 Radio 區：強制限制總寬度為 24px，絕不讓它往右撐開 -->
+    <!-- 左側 Radio 區：鎖定寬度為 24px -->
     <div style="
         display: inline-flex; 
         flex-direction: column; 
         justify-content: center; 
-        width: 24px;           /* 📌 最核心修改：鎖死寬度，一像素都不準多 */
+        width: 24px;           
         font-size: 10px; 
         line-height: 1; 
-        margin-right: 4px;     /* 與右側輸入框只保留 4px 的精緻微小間距 */
+        margin-right: 4px;     /* 與右側輸入框維持 4px 的微小間距 */
     ">
         <!-- 西元 -->
         <label style="display: inline-flex; align-items: center; justify-content: flex-end; margin-bottom: 2px; cursor: pointer; width: 100%;">
             <input type="radio" name="yearType" value="ad" checked style="margin: 0; transform: scale(0.75);">
-            <!-- 使用 CSS 標準直排，不留任何多餘空隙 -->
             <span style="writing-mode: vertical-lr; letter-spacing: -1px; margin-left: 1px;">西元</span>
         </label>
         
@@ -255,29 +254,29 @@
         </label>
     </div>
 
-    <!-- 右側輸入框本體：維持 125px -->
-    <div style="display: inline-block; width: 125px;">
-        <!-- 西元輸入框 -->
+    <!-- 右側輸入框本體：重回標準 150px！這會讓它跟其他欄位看起來完全一樣大 -->
+    <div style="display: inline-block; width: 150px;">
+        <!-- 西元輸入框（重回 150px） -->
         <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 32px; font-size: 13px;">
 
-        <!-- 民國輸入框群組 -->
+        <!-- 民國輸入框群組（重回 150px） -->
         <div id="rocContainer" style="
             display: none; 
             align-items: center; 
             justify-content: space-between; 
             width: 100%; 
             box-sizing: border-box;
-            padding: 0 2px;
+            padding: 0 4px;         /* 稍微放寬內邊距，讓字體舒展 */
             border: 1px solid #ccc; 
             height: 32px;            
             border-radius: 4px;
             background-color: #fff;
         ">
-            <input type="number" id="twYear" min="1" style="width: 30%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
+            <input type="number" id="twYear" min="1" style="width: 32%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
             <span style="font-size: 10px; color: #666; user-select: none;">年</span>
-            <input type="number" id="twMonth" min="1" max="12" style="width: 20%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
+            <input type="number" id="twMonth" min="1" max="12" style="width: 22%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
             <span style="font-size: 10px; color: #666; user-select: none;">月</span>
-            <input type="number" id="twDay" min="1" max="31" style="width: 20%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
+            <input type="number" id="twDay" min="1" max="31" style="width: 22%; text-align: center; border: none; background: transparent; padding: 0; font-size: 13px;">
             <span style="font-size: 10px; color: #666; user-select: none;">日</span>
         </div>
     </div>
