@@ -234,7 +234,6 @@
             <div class="form-group">
                 <label class="required">出生日期</label>
 <!-- 📌 修改成西元/民國 雙用  -->
-
 <div style="
     display: inline-flex; 
     align-items: center; 
@@ -249,7 +248,7 @@
         display: inline-flex; 
         flex-direction: column; 
         justify-content: center; 
-      /*  font-size: 15px;      */ 
+        font-size: 16px;
         line-height: 1.2; 
         margin-right: 6px;
         flex-shrink: 0;
@@ -269,7 +268,7 @@
     <!-- 右側輸入框主體：標準 150px 寬度，高 32px   font-size:14px  -->
     <div style="display: block; width: 160px; height: 40px; flex-shrink: 0;">
         <!-- 西元輸入框 -->
-        <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 40px; font-size: 15px; padding: 0 4px;">
+        <input type="date" id="adDate" style="width: 100%; box-sizing: border-box; height: 40px; font-size: 16px; padding: 0 4px;">
 
         <!-- 民國輸入框群組 -->
         <div id="rocContainer" style="
@@ -281,22 +280,22 @@
             height: 40px;            
         ">
             <!-- 「年」輸入框：獨立灰色細框 -->
-            <input type="number" id="twYear" min="1" placeholder="年" style="
-                width: 31%; text-align: center; height: 40px; box-sizing: border-box; font-size: 15px;
+            <input type="number" id="twYear" min="1" placeholder=" " style="
+                width: 31%; text-align: center; height: 40px; box-sizing: border-box; font-size: 16px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
             <span style="font-size: 16px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">年</span>
             
             <!-- 「月」輸入框：獨立灰色細框 -->
-            <input type="number" id="twMonth" min="1" max="12" placeholder="月" style="
-                width: 24%; text-align: center; height: 40px; box-sizing: border-box; font-size: 15px;
+            <input type="number" id="twMonth" min="1" max="12" placeholder=" " style="
+                width: 24%; text-align: center; height: 40px; box-sizing: border-box; font-size: 16px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
             <span style="font-size: 16px; color: #666; user-select: none; margin: 0 1px; width: auto !important;">月</span>
             
             <!-- 「日」輸入框：獨立灰色細框 -->
-            <input type="number" id="twDay" min="1" max="31" placeholder="日" style="
-                width: 24%; text-align: center; height: 40px; box-sizing: border-box; font-size: 15px;
+            <input type="number" id="twDay" min="1" max="31" placeholder=" " style="
+                width: 24%; text-align: center; height: 40px; box-sizing: border-box; font-size: 16px;
                 border: 1px solid #ccc; border-radius: 4px; background-color: #fff; padding: 0;
             ">
             <span style="font-size: 16px; color: #666; user-select: none; margin: 0 0 0 1px; width: auto !important;">日</span>
