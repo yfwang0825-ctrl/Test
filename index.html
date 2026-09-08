@@ -563,7 +563,7 @@ function getAgeKey(age) {
         const extraMonths = totalMonths % 12;
 
         if (currentYears === 5) {
-            if (extraMonths >= 1 && extraMonths <= 3) return "60";
+            if (extraMonths >= 0 && extraMonths <= 3) return "60";
             if (extraMonths === 4 || extraMonths === 5) return "66";
             if (extraMonths === 6) return "66";
             if (extraMonths >= 7 && extraMonths <= 9) return "66";
